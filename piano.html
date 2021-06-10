@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>钢琴</title>
+	<style type="text/css">
+		*{margin:0px;padding:0px;list-style:none;}
+		#all{width:800px;height:300px;border:solid 0px #333;margin:100px auto;position:relative;}
+		body{background:url(bg_4.jpg);}
+		li{width:5%;height:100%;background:#fff;float:left;border-right:solid 2px black;border-radius:0px 0px 10px 10px;text-align:center;line-height:35em;}
+		.black{width:4%;height:60%;background:#111;border-radius:0px 0px 10px 10px;left:10px;top:0px;position:absolute;}
+	</style>
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+</head>
+<body>
+	<ul id="all">
+		<li>C3</li>
+		<li>D3</li>
+		<li>F3</li>
+		<li>G3</li>
+		<li>A3</li>
+		<li>B3</li>
+		<li>C4</li>
+		<li>D4</li>
+		<li>E4</li>
+		<li>F4</li>
+		<li>G4</li>
+		<li>A4</li>
+		<li>B4</li>
+		<li>C5</li>
+		<li>D5</li>
+		<li>E5</li>
+		<li>F5</li>
+		<li>G5</li>
+		<li>A5</li>
+		<li id="CD4" class="black" style="left:24px;"></li>
+		<li id="DE4" class="black" style="left:65px;"></li>
+		<li id="FG4" class="black" style="left:150px;"></li>
+		<li id="GA4" class="black" style="left:192px;"></li>
+		<li id="AB4" class="black" style="left:234px;"></li>
+
+		<li id="CD5" class="black" style="left:318px;"></li>
+		<li id="DE5" class="black" style="left:360px;"></li>
+
+		<li id="FG5" class="black" style="left:444px;"></li>
+		<li id="GA5" class="black" style="left:486px;"></li>
+		<li id="AB5" class="black" style="left:528px;"></li>
+
+		<li id="CD6" class="black" style="left:612px;"></li>
+		<li id="DE6" class="black" style="left:654px;"></li>
+		<li id="FG6" class="black" style="left:738px;"></li>
+	</ul>
+	<script type="text/javascript">
+	//鼠标按下事件
+	$('li').mousedown(function(){
+		//拼接路径
+		var src = "./music/"+$(this).html().toLowerCase()+'.wav.mp3';
+		//创建媒体对象
+		var audio = new Audio(src);
+		//调用play方法
+		audio.play();
+		// 改变当前按键的颜色
+		$(this).css('background','-moz-linear-gradient(top,#eee,#222)');
+	})
+	//鼠标抬起事件
+	$('li').mouseup(function(){
+		//回复键盘的颜色
+		$(this).css('background','white');
+	})
+
+	//mouseover  mouseout
+	$('li').hover(function(){
+		$(this).css('cursor','pointer');
+	},function(){
+		$(this).css('cursor','default')
+	})
+
+	//键盘按下事件
+	$(window).keypress(function(e){
+		//获取当前的按键
+		var k = e.key.toLowerCase();
+		//针对按键进行不同的操作
+		switch(k){
+			case "q":
+				$('li:contains(C3)').mousedown();
+				break;
+			case "w":
+				$('li:contains(D3)').mousedown();
+				break;
+			case "e":
+				$('li:contains(F3)').mousedown();
+				break;
+			case "r":
+				$('li:contains(G3)').mousedown();
+				break;
+			case "t":
+				$('li:contains(A3)').mousedown();
+				break;
+			case "y":
+				$('li:contains(B3)').mousedown();
+				break;
+			case "u":
+				$('li:contains(C4)').mousedown();
+				break;
+			case "i":
+				$('li:contains(D4)').mousedown();
+				break;
+			case "o":
+				$('li:contains(E4)').mousedown();
+				break;
+			case "p":
+				$('li:contains(F4)').mousedown();
+				break;
+			case "[":
+				$('li:contains(G4)').mousedown();
+				break;
+			case "]":
+				$('li:contains(A4)').mousedown();
+				break;
+			case "\\":
+				$('li:contains(B4)').mousedown();
+				break;
+			case "pageup":
+				$('li:contains(C5)').mousedown();
+				break;
+			case "pagedown":
+				$('li:contains(D5)').mousedown();
+				break;
+			case "end":
+				$('li:contains(E5)').mousedown();
+				break;
+			default:
+				return false;
+		}
+		return false;
+	})
+
+	$(window).keyup(function(){
+		$('li').not('.black').css('background','white');
+	})
+
+
+	</script>
+</body>
+</html>
